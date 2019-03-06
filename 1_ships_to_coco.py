@@ -12,17 +12,17 @@ import pandas as pd
 from skimage.data import imread
 import matplotlib.pyplot as plt
 
-ROOT_DIR = '/home/math13/JR/kaggle/'                                                # Êı¾İ¼¯¸ùÄ¿Â¼
-IMAGE_DIR = os.path.join(ROOT_DIR, "train")                # ÑµÁ·¼¯Í¼Æ¬ËùÔÚÄ¿Â¼
+ROOT_DIR = '/home/math13/JR/kaggle/'                                                # æ•°æ®é›†æ ¹ç›®å½•
+IMAGE_DIR = os.path.join(ROOT_DIR, "train")                # è®­ç»ƒé›†å›¾ç‰‡æ‰€åœ¨ç›®å½•
 csv_train = '/home/math13/JR/kaggle/positive_example.csv'
-df = pd.read_csv( os.path.join(ROOT_DIR, csv_train) )  # ¶ÁÈ¡csv±ê×¢ÎÄ¼ş
+df = pd.read_csv( os.path.join(ROOT_DIR, csv_train) )  # è¯»å–csvæ ‡æ³¨æ–‡ä»¶
 
 INFO = {
     "description": "Kaggle Dataset",
-    "url": "https://github.com/pascal1129",
+    "url": "https://github.com/JRKONE",
     "version": "0.1.0",
     "year": 2018,
-    "contributor": "pascal1129",
+    "contributor": "JR",
     "date_created": datetime.datetime.utcnow().isoformat(' ')
 }
 
@@ -104,7 +104,7 @@ def main():
             num_of_rle_masks = len(rle_masks)
             for index in range(num_of_rle_masks):
                 binary_mask = rle_decode(rle_masks[index])
-                class_id = 1    # ËùÓĞÍ¼Æ¬µÄÀà±ğ¶¼ÊÇ1£¬ship
+                class_id = 1    # æ‰€æœ‰å›¾ç‰‡çš„ç±»åˆ«éƒ½æ˜¯1ï¼Œship
                 category_info = {'id': class_id, 'is_crowd': 0}
                 annotation_info = pycococreatortools.create_annotation_info(
                     segmentation_id, image_id, category_info, binary_mask,
@@ -115,7 +115,7 @@ def main():
                     save_bad_ann(image_name, binary_mask, segmentation_id)
                 segmentation_id = segmentation_id + 1   
 
-            print("%d of %d is done."%(image_id,num_of_image_files))    # ÏÔÊ¾½ø¶È
+            print("%d of %d is done."%(image_id,num_of_image_files))    # æ˜¾ç¤ºè¿›åº¦
             image_id = image_id + 1
 
     with open('/home/math13/JR/kaggle/instances_ships11_train.json', 'w') as output_json_file:
